@@ -3,16 +3,16 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ciylcp2edlaam"
-path.etc2="res://.godot/imported/Nullb0_Main_BaseColor.png-037afbdca45b1d5ac51542742e1a56de.etc2.ctex"
+path.s3tc="res://.godot/imported/Nullb0_Main_BaseColor.png-037afbdca45b1d5ac51542742e1a56de.s3tc.ctex"
 metadata={
-"imported_formats": ["etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://resource/model/player/Nullb0_Main_BaseColor.png"
-dest_files=["res://.godot/imported/Nullb0_Main_BaseColor.png-037afbdca45b1d5ac51542742e1a56de.etc2.ctex"]
+dest_files=["res://.godot/imported/Nullb0_Main_BaseColor.png-037afbdca45b1d5ac51542742e1a56de.s3tc.ctex"]
 
 [params]
 

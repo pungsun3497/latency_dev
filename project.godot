@@ -33,6 +33,10 @@ folder_colors={
 "res://scene/": "yellow"
 }
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 move_left={

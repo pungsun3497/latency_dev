@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://esl4hggocind"]
+[gd_scene load_steps=8 format=3 uid="uid://esl4hggocind"]
 
 [ext_resource type="Script" uid="uid://by4tcwn7p0vvv" path="res://scene/player/player.gd" id="1_v7pse"]
 [ext_resource type="PackedScene" uid="uid://7ade0olxigbw" path="res://resource/model/player/nullb_0.tscn" id="2_cm2cf"]
+[ext_resource type="Script" uid="uid://dwftr6omrjk7i" path="res://scene/player/player_movement.gd" id="3_6smn3"]
+[ext_resource type="Script" uid="uid://cnct1wgtxc423" path="res://scene/player/player_animation.gd" id="4_5lop3"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_6smn3"]
 viewport_path = NodePath("Sprite2D/SubViewport")
@@ -12,9 +14,8 @@ viewport_path = NodePath("Sprite2D/SubViewport")
 radius = 20.0
 height = 120.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("nullb0")]
+[node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_v7pse")
-nullb0 = NodePath("Sprite2D/SubViewport/Nullb0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.27, 0.27)
@@ -34,3 +35,13 @@ size = 1.7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_6smn3")
+
+[node name="PlayerMovement" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("3_6smn3")
+player = NodePath("..")
+
+[node name="PlayerAnimation" type="Node" parent="." node_paths=PackedStringArray("player", "movement", "nullb0")]
+script = ExtResource("4_5lop3")
+player = NodePath("..")
+movement = NodePath("../PlayerMovement")
+nullb0 = NodePath("../Sprite2D/SubViewport/Nullb0")
