@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://esl4hggocind"]
+
+[ext_resource type="Script" uid="uid://by4tcwn7p0vvv" path="res://scene/player/player.gd" id="1_v7pse"]
+[ext_resource type="PackedScene" uid="uid://7ade0olxigbw" path="res://resource/model/player/nullb_0.tscn" id="2_cm2cf"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6smn3"]
+viewport_path = NodePath("Sprite2D/SubViewport")
+
+[sub_resource type="Environment" id="Environment_5lop3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6smn3"]
+radius = 20.0
+height = 120.0
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("nullb0")]
+script = ExtResource("1_v7pse")
+nullb0 = NodePath("Sprite2D/SubViewport/Nullb0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.27, 0.27)
+texture = SubResource("ViewportTexture_6smn3")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite2D"]
+transparent_bg = true
+
+[node name="Nullb0" parent="Sprite2D/SubViewport" instance=ExtResource("2_cm2cf")]
+
+[node name="Camera3D" type="Camera3D" parent="Sprite2D/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.769913, 2.45028)
+environment = SubResource("Environment_5lop3")
+projection = 1
+fov = 40.0
+size = 1.7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_6smn3")

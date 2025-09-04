@@ -1,0 +1,313 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=51 format=3 uid="uid://0qwbankqymdt"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tvgxp"]
+animation = &"eye_blink"
+
+[sub_resource type="Curve" id="Curve_2nvvk"]
+_data = [Vector2(0.501309, 0), 0.0, 0.0, 0, 0, Vector2(0.987252, 1), 6.9149, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_06d2t"]
+xfade_time = 0.1
+xfade_curve = SubResource("Curve_2nvvk")
+input_0/name = "front"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "other_side"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dfioj"]
+animation = &"climb_high_idle"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_2m6t1"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d0u37"]
+animation = &"climb_high_in"
+
+[sub_resource type="Curve" id="Curve_qpdr4"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_v8qot"]
+fadein_time = 0.1
+fadeout_time = 0.1
+fadeout_curve = SubResource("Curve_qpdr4")
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_ku7nv"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2e8p5"]
+animation = &"climb_high_left"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_wdnkp"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_01wsx"]
+input_0/name = "left"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "right"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nkldo"]
+animation = &"climb_high_right"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_v2mdm"]
+
+[sub_resource type="Curve" id="Curve_3kl8s"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.505362, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.97573), 7.16927, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_533m8"]
+xfade_time = 0.2
+xfade_curve = SubResource("Curve_3kl8s")
+input_0/name = "front"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "other_side"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_3ghk8"]
+input_0/name = "high"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "no_high"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vts15"]
+animation = &"climb_idle"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_04byj"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_khxrl"]
+animation = &"climb_in"
+
+[sub_resource type="Curve" id="Curve_yfgb5"]
+_data = [Vector2(0, 0.0466005), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_sg150"]
+fadein_time = 0.1
+fadeout_time = 0.5
+fadeout_curve = SubResource("Curve_yfgb5")
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_5ldb4"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c5n0o"]
+animation = &"climb_left"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_nwfhn"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_vrlwi"]
+input_0/name = "left"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "right"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_870c7"]
+animation = &"climb_right"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_o2j03"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_m4b4f"]
+input_0/name = "climb"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "no_climb"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ha68s"]
+animation = &"dash"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_1flff"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_0hxdm"]
+xfade_time = 0.1
+input_0/name = "no_dashing"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "dashing"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_6jmau"]
+filter_enabled = true
+filters = ["NullB0/Skeleton3D/Head:CloseEye.L", "NullB0/Skeleton3D/Head:CloseEye.R", "NullB0/Skeleton3D/Head:HalfEye.L", "NullB0/Skeleton3D/Head:HalfEye.R", "NullB0/Skeleton3D/Head:Key 7", "NullB0/Skeleton3D/Head:face1", "NullB0/Skeleton3D/Head:face2"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_7wb2v"]
+input_0/name = "blink"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = false
+input_1/name = "uwu"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = false
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j86lu"]
+animation = &"fall"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_w1msw"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_pgy72"]
+xfade_time = 0.05
+input_0/name = "ground"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "float"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g52io"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_6eq2m"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1jqru"]
+animation = &"jump"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ckhdc"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_o7fvx"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bkssm"]
+animation = &"land"
+
+[sub_resource type="Curve" id="Curve_ix484"]
+_data = [Vector2(0.511204, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_ql85k"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:foot.L", "Armature/Skeleton3D:foot.R", "Armature/Skeleton3D:head", "Armature/Skeleton3D:lowerBody", "Armature/Skeleton3D:lowerLeg.L", "Armature/Skeleton3D:lowerLeg.R", "Armature/Skeleton3D:mask", "Armature/Skeleton3D:neck", "Armature/Skeleton3D:uppderLeg.L", "Armature/Skeleton3D:uppderLeg.R", "Armature/Skeleton3D:upperBody", "NullB0/Skeleton3D:head", "NullB0/Skeleton3D:lowerArm.L", "NullB0/Skeleton3D:lowerArm.R", "NullB0/Skeleton3D:lowerBody", "NullB0/Skeleton3D:lowerLeg.L", "NullB0/Skeleton3D:lowerLeg.R", "NullB0/Skeleton3D:mask", "NullB0/Skeleton3D:neck", "NullB0/Skeleton3D:uppderArm.L", "NullB0/Skeleton3D:uppderArm.R", "NullB0/Skeleton3D:uppderLeg.L", "NullB0/Skeleton3D:uppderLeg.R", "NullB0/Skeleton3D:upperBody"]
+mix_mode = 1
+fadeout_time = 0.5
+fadeout_curve = SubResource("Curve_ix484")
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_xmunq"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0xuqy"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_td8l1"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_2gmrw"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y6bfi"]
+animation = &"uwu"
+
+[resource]
+graph_offset = Vector2(193.425, 152.851)
+nodes/blink_animation/node = SubResource("AnimationNodeAnimation_tvgxp")
+nodes/blink_animation/position = Vector2(826.667, 693.333)
+nodes/ch_direction_transition/node = SubResource("AnimationNodeTransition_06d2t")
+nodes/ch_direction_transition/position = Vector2(240, -746.667)
+nodes/ch_idle_animation/node = SubResource("AnimationNodeAnimation_dfioj")
+nodes/ch_idle_animation/position = Vector2(-240, -853.333)
+nodes/ch_idle_scale/node = SubResource("AnimationNodeTimeScale_2m6t1")
+nodes/ch_idle_scale/position = Vector2(0, -826.667)
+nodes/ch_in_animation/node = SubResource("AnimationNodeAnimation_d0u37")
+nodes/ch_in_animation/position = Vector2(240, -533.333)
+nodes/ch_in_oneshot/node = SubResource("AnimationNodeOneShot_v8qot")
+nodes/ch_in_oneshot/position = Vector2(640, -640)
+nodes/ch_in_scale/node = SubResource("AnimationNodeTimeScale_ku7nv")
+nodes/ch_in_scale/position = Vector2(453.333, -533.333)
+nodes/ch_left_animation/node = SubResource("AnimationNodeAnimation_2e8p5")
+nodes/ch_left_animation/position = Vector2(-666.667, -640)
+nodes/ch_left_scale/node = SubResource("AnimationNodeTimeScale_wdnkp")
+nodes/ch_left_scale/position = Vector2(-453.333, -640)
+nodes/ch_other_side_left_right_transition/node = SubResource("AnimationNodeTransition_01wsx")
+nodes/ch_other_side_left_right_transition/position = Vector2(-160, -613.333)
+nodes/ch_right_animation/node = SubResource("AnimationNodeAnimation_nkldo")
+nodes/ch_right_animation/position = Vector2(-666.667, -480)
+nodes/ch_right_scale/node = SubResource("AnimationNodeTimeScale_v2mdm")
+nodes/ch_right_scale/position = Vector2(-453.333, -480)
+nodes/climb_direction_transition/node = SubResource("AnimationNodeTransition_533m8")
+nodes/climb_direction_transition/position = Vector2(53.3333, -293.333)
+nodes/climb_high_transition/node = SubResource("AnimationNodeTransition_3ghk8")
+nodes/climb_high_transition/position = Vector2(853.333, -320)
+nodes/climb_idle_animation/node = SubResource("AnimationNodeAnimation_vts15")
+nodes/climb_idle_animation/position = Vector2(-373.333, -320)
+nodes/climb_idle_scale/node = SubResource("AnimationNodeTimeScale_04byj")
+nodes/climb_idle_scale/position = Vector2(-133.333, -346.667)
+nodes/climb_in_animation/node = SubResource("AnimationNodeAnimation_khxrl")
+nodes/climb_in_animation/position = Vector2(160, 0)
+nodes/climb_in_oneshot/node = SubResource("AnimationNodeOneShot_sg150")
+nodes/climb_in_oneshot/position = Vector2(666.667, -106.667)
+nodes/climb_in_scale/node = SubResource("AnimationNodeTimeScale_5ldb4")
+nodes/climb_in_scale/position = Vector2(373.333, 26.6667)
+nodes/climb_left_animation/node = SubResource("AnimationNodeAnimation_c5n0o")
+nodes/climb_left_animation/position = Vector2(-773.333, -160)
+nodes/climb_left_scale/node = SubResource("AnimationNodeTimeScale_nwfhn")
+nodes/climb_left_scale/position = Vector2(-560, -186.667)
+nodes/climb_other_side_left_right_transition/node = SubResource("AnimationNodeTransition_vrlwi")
+nodes/climb_other_side_left_right_transition/position = Vector2(-346.667, -160)
+nodes/climb_right_animation/node = SubResource("AnimationNodeAnimation_870c7")
+nodes/climb_right_animation/position = Vector2(-773.333, 0)
+nodes/climb_right_scale/node = SubResource("AnimationNodeTimeScale_o2j03")
+nodes/climb_right_scale/position = Vector2(-560, -26.6667)
+nodes/climb_transition/node = SubResource("AnimationNodeTransition_m4b4f")
+nodes/climb_transition/position = Vector2(944, 208)
+nodes/dash_animation/node = SubResource("AnimationNodeAnimation_ha68s")
+nodes/dash_animation/position = Vector2(346.667, 613.333)
+nodes/dash_scale/node = SubResource("AnimationNodeTimeScale_1flff")
+nodes/dash_scale/position = Vector2(533.333, 586.667)
+nodes/dash_transition/node = SubResource("AnimationNodeTransition_0hxdm")
+nodes/dash_transition/position = Vector2(1120, 400)
+nodes/face_add/node = SubResource("AnimationNodeAdd2_6jmau")
+nodes/face_add/position = Vector2(1386.67, 453.333)
+nodes/face_transition/node = SubResource("AnimationNodeTransition_7wb2v")
+nodes/face_transition/position = Vector2(1173.33, 613.333)
+nodes/fallAnimation/node = SubResource("AnimationNodeAnimation_j86lu")
+nodes/fallAnimation/position = Vector2(-426.667, 826.667)
+nodes/fall_scale/node = SubResource("AnimationNodeTimeScale_w1msw")
+nodes/fall_scale/position = Vector2(-213.333, 720)
+nodes/ground_transition/node = SubResource("AnimationNodeTransition_pgy72")
+nodes/ground_transition/position = Vector2(266.667, 346.667)
+nodes/idle_animation/node = SubResource("AnimationNodeAnimation_g52io")
+nodes/idle_animation/position = Vector2(-773.333, 320)
+nodes/idle_scale/node = SubResource("AnimationNodeTimeScale_6eq2m")
+nodes/idle_scale/position = Vector2(-426.667, 293.333)
+nodes/jump_animation/node = SubResource("AnimationNodeAnimation_1jqru")
+nodes/jump_animation/position = Vector2(-480, 613.333)
+nodes/jump_blend/node = SubResource("AnimationNodeBlend2_ckhdc")
+nodes/jump_blend/position = Vector2(-26.6667, 560)
+nodes/jump_scale/node = SubResource("AnimationNodeTimeScale_o7fvx")
+nodes/jump_scale/position = Vector2(-213.333, 560)
+nodes/land_animation/node = SubResource("AnimationNodeAnimation_bkssm")
+nodes/land_animation/position = Vector2(-266.667, 133.333)
+nodes/land_oneshot/node = SubResource("AnimationNodeOneShot_ql85k")
+nodes/land_oneshot/position = Vector2(80, 213.333)
+nodes/land_scale/node = SubResource("AnimationNodeTimeScale_xmunq")
+nodes/land_scale/position = Vector2(-106.667, 106.667)
+nodes/output/position = Vector2(1680, 400)
+nodes/run_animation/node = SubResource("AnimationNodeAnimation_0xuqy")
+nodes/run_animation/position = Vector2(-586.667, 426.667)
+nodes/run_blend/node = SubResource("AnimationNodeBlend2_td8l1")
+nodes/run_blend/position = Vector2(-266.667, 293.333)
+nodes/run_scale/node = SubResource("AnimationNodeTimeScale_2gmrw")
+nodes/run_scale/position = Vector2(-426.667, 426.667)
+nodes/uwu_animation/node = SubResource("AnimationNodeAnimation_y6bfi")
+nodes/uwu_animation/position = Vector2(832, 880)
+node_connections = [&"ch_direction_transition", 0, &"ch_idle_scale", &"ch_direction_transition", 1, &"ch_other_side_left_right_transition", &"ch_idle_scale", 0, &"ch_idle_animation", &"ch_in_oneshot", 0, &"ch_direction_transition", &"ch_in_oneshot", 1, &"ch_in_scale", &"ch_in_scale", 0, &"ch_in_animation", &"ch_left_scale", 0, &"ch_left_animation", &"ch_other_side_left_right_transition", 0, &"ch_left_scale", &"ch_other_side_left_right_transition", 1, &"ch_right_scale", &"ch_right_scale", 0, &"ch_right_animation", &"climb_direction_transition", 0, &"climb_idle_scale", &"climb_direction_transition", 1, &"climb_other_side_left_right_transition", &"climb_high_transition", 0, &"ch_in_oneshot", &"climb_high_transition", 1, &"climb_in_oneshot", &"climb_idle_scale", 0, &"climb_idle_animation", &"climb_in_oneshot", 0, &"climb_direction_transition", &"climb_in_oneshot", 1, &"climb_in_scale", &"climb_in_scale", 0, &"climb_in_animation", &"climb_left_scale", 0, &"climb_left_animation", &"climb_other_side_left_right_transition", 0, &"climb_left_scale", &"climb_other_side_left_right_transition", 1, &"climb_right_scale", &"climb_right_scale", 0, &"climb_right_animation", &"climb_transition", 0, &"climb_high_transition", &"climb_transition", 1, &"ground_transition", &"dash_scale", 0, &"dash_animation", &"dash_transition", 0, &"climb_transition", &"dash_transition", 1, &"dash_scale", &"face_add", 0, &"dash_transition", &"face_add", 1, &"face_transition", &"face_transition", 0, &"blink_animation", &"face_transition", 1, &"uwu_animation", &"fall_scale", 0, &"fallAnimation", &"ground_transition", 0, &"land_oneshot", &"ground_transition", 1, &"jump_blend", &"idle_scale", 0, &"idle_animation", &"jump_blend", 0, &"jump_scale", &"jump_blend", 1, &"fall_scale", &"jump_scale", 0, &"jump_animation", &"land_oneshot", 0, &"run_blend", &"land_oneshot", 1, &"land_scale", &"land_scale", 0, &"land_animation", &"output", 0, &"face_add", &"run_blend", 0, &"idle_scale", &"run_blend", 1, &"run_scale", &"run_scale", 0, &"run_animation"]

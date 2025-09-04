@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://7ade0olxigbw"]
+
+[ext_resource type="PackedScene" uid="uid://c7napa4khc5o5" path="res://resource/model/player/Nullb0.glb" id="1_sy1y2"]
+[ext_resource type="Script" uid="uid://341owhvpnped" path="res://resource/model/player/nullb_0.gd" id="2_gk660"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://0qwbankqymdt" path="res://resource/model/player/nullb0_animation_tree.tres" id="2_pqfvl"]
+
+[node name="Nullb0" instance=ExtResource("1_sy1y2")]
+script = ExtResource("2_gk660")
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="3"]
+tree_root = ExtResource("2_pqfvl")
+anim_player = NodePath("../AnimationPlayer")
+parameters/ch_direction_transition/current_state = ""
+parameters/ch_direction_transition/transition_request = "front"
+parameters/ch_direction_transition/current_index = -1
+parameters/ch_idle_scale/scale = 1.0
+parameters/ch_in_oneshot/active = false
+parameters/ch_in_oneshot/internal_active = false
+parameters/ch_in_oneshot/request = 0
+parameters/ch_in_scale/scale = 1.0
+parameters/ch_left_scale/scale = 1.0
+parameters/ch_other_side_left_right_transition/current_state = ""
+parameters/ch_other_side_left_right_transition/transition_request = "left"
+parameters/ch_other_side_left_right_transition/current_index = -1
+parameters/ch_right_scale/scale = 1.0
+parameters/climb_direction_transition/current_state = "front"
+parameters/climb_direction_transition/transition_request = ""
+parameters/climb_direction_transition/current_index = 0
+parameters/climb_high_transition/current_state = "no_high"
+parameters/climb_high_transition/transition_request = ""
+parameters/climb_high_transition/current_index = 1
+parameters/climb_idle_scale/scale = 1.0
+parameters/climb_in_oneshot/active = false
+parameters/climb_in_oneshot/internal_active = false
+parameters/climb_in_oneshot/request = 0
+parameters/climb_in_scale/scale = 1.0
+parameters/climb_left_scale/scale = 1.0
+parameters/climb_other_side_left_right_transition/current_state = 0.833333
+parameters/climb_other_side_left_right_transition/transition_request = "left"
+parameters/climb_other_side_left_right_transition/current_index = 0.0166667
+parameters/climb_right_scale/scale = 1.0
+parameters/climb_transition/current_state = "no_climb"
+parameters/climb_transition/transition_request = ""
+parameters/climb_transition/current_index = 1
+parameters/dash_scale/scale = 1.0
+parameters/dash_transition/current_state = "no_dashing"
+parameters/dash_transition/transition_request = ""
+parameters/dash_transition/current_index = 0
+parameters/face_add/add_amount = 1.0
+parameters/face_transition/current_state = "blink"
+parameters/face_transition/transition_request = ""
+parameters/face_transition/current_index = 0
+parameters/fall_scale/scale = 1.0
+parameters/ground_transition/current_state = "ground"
+parameters/ground_transition/transition_request = ""
+parameters/ground_transition/current_index = 0
+parameters/idle_scale/scale = 1.0
+parameters/jump_blend/blend_amount = 0
+parameters/jump_scale/scale = 1.0
+parameters/land_oneshot/active = false
+parameters/land_oneshot/internal_active = false
+parameters/land_oneshot/request = 0
+parameters/land_scale/scale = 1.0
+parameters/run_blend/blend_amount = 0
+parameters/run_scale/scale = 1.0
