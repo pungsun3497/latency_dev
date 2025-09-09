@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bt68htu8m8ula"]
+
+[ext_resource type="Script" uid="uid://b1su0y2ohaqvk" path="res://scene/player/input_indicator/input_indicator_line.gd" id="1_swxu2"]
+
+[node name="InputIndicatorLine" type="Line2D"]
+width = 3.0
+script = ExtResource("1_swxu2")

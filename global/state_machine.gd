@@ -1,10 +1,13 @@
 extends Node
 class_name StateMachine
 
+signal state_changed(old_state_name, new_state_name)
+
 @export var initial_state: StringName
 
 var states: Dictionary
 var current_state: State = null
+var last_state: State = null
 
 
 func _ready() -> void:
@@ -17,14 +20,17 @@ func _ready() -> void:
 
 func change_state(state_name: StringName) -> void:
 	if not states.has(state_name): return
-	if current_state: current_state._exit()
+	if current_state: current_state.exit()
+	last_state = current_state
 	current_state = states[state_name]
-	if current_state: current_state._enter()
+	if current_state: current_state.enter()
+	
+	state_changed.emit(last_state.name if last_state else "", current_state.name if current_state else "")
 
 
 func _process(delta: float) -> void:
-	if current_state: current_state._process(delta)
+	if current_state: current_state.process(delta)
 
 
 func _physics_process(delta: float) -> void:
-	if current_state: current_state._physics_process(delta)
+	if current_state: current_state.physics_process(delta)

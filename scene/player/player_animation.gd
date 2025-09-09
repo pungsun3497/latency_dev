@@ -6,68 +6,49 @@ class_name PlayerAnimation
 @export var nullb0: NullB0
 @onready var anim_tree = $"../Sprite2D/SubViewport/Nullb0/AnimationTree"
 
-func _process(delta: float) -> void:
-	set_animation()
+func _ready() -> void:
+	%PlayerMovement.state_changed.connect(on_player_movement_state_changed)
+	%PlayerAttack.attacked.connect(on_player_attacked)
 
-func set_animation() -> void:
-	if movement.is_climbing and not movement.is_climbing_high:
-		#print_debug("A")
-		anim_tree.set("parameters/climb_high_transition/transition_request", "no_high")
-		anim_tree.set("parameters/climb_transition/transition_request", "climb")
-		if movement.is_just_climbed:
-			anim_tree.tree_root.get_node("climb_direction_transition").xfade_time = 0.0
-			anim_tree.set("parameters/climb_in_oneshot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-			nullb0.target_rotation = nullb0.CLIMBING_ROTATION * movement.climb_facing
-		else:
-			anim_tree.tree_root.get_node("climb_direction_transition").xfade_time = 0.4
-		if movement.climb_facing == movement.facing:
-			anim_tree.set("parameters/climb_direction_transition/transition_request", "front")
-		else:
-			anim_tree.set("parameters/climb_in_oneshot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
-			anim_tree.set("parameters/climb_direction_transition/transition_request", "other_side")
-			if movement.facing > 0:
-				anim_tree.set("parameters/climb_other_side_left_right_transition/transition_request", "left")
-			else:
-				anim_tree.set("parameters/climb_other_side_left_right_transition/transition_request", "right")
-	elif movement.is_climbing and movement.is_climbing_high:
-		anim_tree.set("parameters/climb_high_transition/transition_request", "high")
-		anim_tree.set("parameters/climb_transition/transition_request", "climb")
-		if movement.is_just_climbed:
-			anim_tree.tree_root.get_node("ch_direction_transition").xfade_time = 0.0
-			anim_tree.set("parameters/ch_in_oneshot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-			nullb0.target_rotation = nullb0.CLIMBING_ROTATION * movement.climb_facing
-		else:
-			anim_tree.tree_root.get_node("ch_direction_transition").xfade_time = 0.4
-		if movement.climb_facing == movement.facing:
-			anim_tree.set("parameters/ch_direction_transition/transition_request", "front")
-		else:
-			anim_tree.set("parameters/ch_in_oneshot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
-			anim_tree.set("parameters/ch_direction_transition/transition_request", "other_side")
-			if movement.facing > 0:
-				anim_tree.set("parameters/ch_other_side_left_right_transition/transition_request", "left")
-			else:
-				anim_tree.set("parameters/ch_other_side_left_right_transition/transition_request", "right")
-	else:
-		anim_tree.set("parameters/climb_transition/transition_request", "no_climb")
-		nullb0.target_rotation = nullb0.FACING_ROTATION * movement.facing
-	
-	if movement.is_dashing:
-		anim_tree.set("parameters/dash_transition/transition_request", "dashing")
-	else:
-		anim_tree.set("parameters/dash_transition/transition_request", "no_dashing")
-	
-	if player.is_on_floor():
-		anim_tree.set("parameters/ground_transition/transition_request", "ground")
-		if movement.is_just_landed == true:
-			anim_tree.set("parameters/land_oneshot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-	else:
-		anim_tree.set("parameters/ground_transition/transition_request", "float")
-	
-	anim_tree.set("parameters/run_blend/blend_amount", abs(movement.h_input))
-	if abs(movement.h_input) > 0 and abs(player.velocity.x / player.TILE_SIZE) < 0.1:
-		anim_tree.set("parameters/face_transition/transition_request", "uwu")
-	elif player.velocity.y < 0:
-		anim_tree.set("parameters/face_transition/transition_request", "uwu")
-	else:
-		anim_tree.set("parameters/face_transition/transition_request", "blink")
-	anim_tree.set("parameters/jump_blend/blend_amount", clampf(player.velocity.y/movement.jump_power/2 + 0.5, 0, 1))
+
+func on_player_movement_state_changed(old_state_name, new_state_name):
+	match new_state_name:
+		"Idle":
+			if old_state_name == "Fall":
+				anim_tree.set("parameters/LandOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+			anim_tree.get("parameters/StateMachine/playback").travel("idle")
+			anim_tree.get("parameters/FaceStateMachine/playback").travel("eye_blink")
+		"Run":
+			if old_state_name == "Fall":
+				anim_tree.set("parameters/LandOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+			anim_tree.get("parameters/StateMachine/playback").travel("run")
+			anim_tree.get("parameters/FaceStateMachine/playback").travel("eye_blink")
+		"Jump":
+			anim_tree.get("parameters/StateMachine/playback").travel("fall")
+			anim_tree.get("parameters/FaceStateMachine/playback").travel(">_<")
+		"Fall":
+			anim_tree.get("parameters/StateMachine/playback").travel("fall")
+			anim_tree.get("parameters/FaceStateMachine/playback").travel("eye_blink")
+
+
+func on_player_attacked():
+	anim_tree.set("parameters/AttackOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+
+
+func _process(delta: float) -> void:
+	rotate_model()
+	anim_tree.set("parameters/StateMachine/fall/blend_position", remap(player.velocity.y, -%PlayerMovement.jump_power, %PlayerMovement.jump_power, 1, -1))
+
+
+func rotate_model():
+	match %PlayerMovement.get_current_state_name():
+		"Idle":
+			nullb0.target_rotation = 0
+		"Run":
+			nullb0.target_rotation = %PlayerMovement.facing * PI / 4
+		"Jump":
+			nullb0.target_rotation = %PlayerMovement.facing * PI / 4
+		"Fall":
+			nullb0.target_rotation = %PlayerMovement.facing * PI / 4
+		"Climb":
+			nullb0.target_rotation = %PlayerMovement.climb_facing * PI / 2

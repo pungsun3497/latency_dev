@@ -1,14 +1,18 @@
 extends Node
 class_name State
 
-func _enter():
+func enter():
 	pass
 
-func _exit():
+func exit():
 	pass
 
-func _process(delta: float):
+func process(delta: float):
 	pass
 
-func _physics_process(delta: float):
+func physics_process(delta: float):
 	pass
+
+func request_transition(state: StringName):
+	if get_parent() is StateMachine:
+		get_parent().change_state(state)
