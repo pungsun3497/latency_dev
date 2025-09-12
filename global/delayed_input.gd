@@ -27,6 +27,7 @@ func _init():
 
 func _unhandled_input(event):
 	input_stream.push_back(TimedInputEvent.new(current_time, event))
+	InputEventMouse
 
 
 func _process(delta):
@@ -71,7 +72,6 @@ func is_action_just_pressed(action: StringName):
 	if not s or not s.pressed:
 		return false
 	if Engine.is_in_physics_frame():
-		print_debug(s.physics_pressed_frame, " : ", Engine.get_physics_frames())
 		return s.physics_pressed_frame == Engine.get_physics_frames()
 	else:
 		return s.process_pressed_frame == Engine.get_process_frames()

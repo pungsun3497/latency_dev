@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://eatwp7i7hbnq"]
+
+[ext_resource type="Script" uid="uid://co1i7540e6dd" path="res://scene/enemy/dummy/dummy.gd" id="1_esbkn"]
+[ext_resource type="Texture2D" uid="uid://dmdikh1usc8o0" path="res://icon.svg" id="2_v8k8t"]
+[ext_resource type="Script" uid="uid://cg54jbgpcdhyh" path="res://global/state_machine.gd" id="3_esbkn"]
+[ext_resource type="Script" uid="uid://crweyl2gxjye8" path="res://global/state.gd" id="4_esbkn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oede7"]
+size = Vector2(128, 128)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bni3p"]
+radius = 56.96
+height = 128.68
+
+[node name="Dummy" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_esbkn")
+max_health = 10
+metadata/_custom_type_script = "uid://b076th4ip4r6v"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_v8k8t")
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("RectangleShape2D_oede7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_bni3p")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_esbkn")
+initial_state = &"Idle"
+metadata/_custom_type_script = "uid://cg54jbgpcdhyh"
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_esbkn")
+metadata/_custom_type_script = "uid://crweyl2gxjye8"
+
+[node name="Label" type="Label" parent="."]
+offset_left = -18.0
+offset_top = -106.0
+offset_right = 22.0
+offset_bottom = -83.0
+text = "hp"

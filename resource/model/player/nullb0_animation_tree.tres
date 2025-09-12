@@ -4,7 +4,6 @@
 animation = &"attack_01"
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_u7014"]
-filter_enabled = true
 filters = ["NullB0/Skeleton3D:eye.L", "NullB0/Skeleton3D:eye.R", "NullB0/Skeleton3D:hair001.L", "NullB0/Skeleton3D:hair001.R", "NullB0/Skeleton3D:hair002.L", "NullB0/Skeleton3D:hair002.R", "NullB0/Skeleton3D:hair003.L", "NullB0/Skeleton3D:hair003.R", "NullB0/Skeleton3D:head", "NullB0/Skeleton3D:lowerArm.L", "NullB0/Skeleton3D:lowerArm.R", "NullB0/Skeleton3D:mask", "NullB0/Skeleton3D:neck", "NullB0/Skeleton3D:pupil.L", "NullB0/Skeleton3D:pupil.R", "NullB0/Skeleton3D:shoulderRing.L", "NullB0/Skeleton3D:shoulderRing.R", "NullB0/Skeleton3D:uppderArm.L", "NullB0/Skeleton3D:uppderArm.R", "NullB0/Skeleton3D:upperBody", "NullB0/Skeleton3D:weapon"]
 fadeout_time = 0.1
 
@@ -132,7 +131,7 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-489, -169)
 
 [resource]
-graph_offset = Vector2(1100, -48)
+graph_offset = Vector2(1817.09, 124.804)
 nodes/AttackAnimation/node = SubResource("AnimationNodeAnimation_3ay5h")
 nodes/AttackAnimation/position = Vector2(2240, 373.333)
 nodes/AttackOneShot/node = SubResource("AnimationNodeOneShot_u7014")

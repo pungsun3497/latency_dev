@@ -5,6 +5,7 @@ signal state_changed(old_state_name, new_state_name)
 
 @export var initial_state: StringName
 
+var enabled: bool = true
 var states: Dictionary
 var current_state: State = null
 var last_state: State = null
@@ -15,7 +16,14 @@ func _ready() -> void:
 	for child in get_children():
 		if child is State:
 			states.set(child.name, child)
+	
+	if initial_state.is_empty(): push_error("Needed Initial State for State Machine")
 	change_state(initial_state)
+
+
+func get_current_state_name() -> StringName:
+	if current_state: return current_state.name
+	return ""
 
 
 func change_state(state_name: StringName) -> void:
@@ -29,8 +37,10 @@ func change_state(state_name: StringName) -> void:
 
 
 func _process(delta: float) -> void:
+	if not enabled: return
 	if current_state: current_state.process(delta)
 
 
 func _physics_process(delta: float) -> void:
+	if not enabled: return
 	if current_state: current_state.physics_process(delta)

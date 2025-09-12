@@ -1,30 +1,38 @@
-[gd_scene load_steps=17 format=3 uid="uid://esl4hggocind"]
+[gd_scene load_steps=19 format=3 uid="uid://esl4hggocind"]
 
 [ext_resource type="Script" uid="uid://by4tcwn7p0vvv" path="res://scene/player/player.gd" id="1_v7pse"]
 [ext_resource type="PackedScene" uid="uid://7ade0olxigbw" path="res://resource/model/player/nullb_0.tscn" id="2_cm2cf"]
-[ext_resource type="Script" uid="uid://dwftr6omrjk7i" path="res://scene/player/player_movement.gd" id="3_6smn3"]
 [ext_resource type="Script" uid="uid://cnct1wgtxc423" path="res://scene/player/player_animation.gd" id="4_5lop3"]
-[ext_resource type="Script" uid="uid://s6oy6rkbndj8" path="res://scene/player/idle.gd" id="4_732fb"]
-[ext_resource type="Script" uid="uid://cqhqoecslk283" path="res://scene/player/player_attack.gd" id="5_ajqqa"]
+[ext_resource type="Script" uid="uid://s6oy6rkbndj8" path="res://scene/player/states/idle.gd" id="4_732fb"]
 [ext_resource type="Script" uid="uid://crweyl2gxjye8" path="res://global/state.gd" id="5_hfhxk"]
-[ext_resource type="Script" uid="uid://dlbwlg72sui31" path="res://scene/player/run.gd" id="5_pisg7"]
-[ext_resource type="Script" uid="uid://dmheio6ykbcv7" path="res://scene/player/jump.gd" id="6_oypl4"]
-[ext_resource type="Script" uid="uid://dq17n5q0ojb1y" path="res://scene/player/fall.gd" id="7_qjg4s"]
+[ext_resource type="Script" uid="uid://cg54jbgpcdhyh" path="res://global/state_machine.gd" id="5_p3aiu"]
+[ext_resource type="Script" uid="uid://dlbwlg72sui31" path="res://scene/player/states/run.gd" id="5_pisg7"]
+[ext_resource type="Script" uid="uid://dmheio6ykbcv7" path="res://scene/player/states/jump.gd" id="6_oypl4"]
+[ext_resource type="Script" uid="uid://dq17n5q0ojb1y" path="res://scene/player/states/fall.gd" id="7_qjg4s"]
 [ext_resource type="Script" uid="uid://bha45xr28r6xt" path="res://scene/player/player_input.gd" id="8_hfhxk"]
-[ext_resource type="Script" uid="uid://dmsmxtwya4vpy" path="res://scene/player/normal_attack.gd" id="12_1wtbu"]
+[ext_resource type="Script" uid="uid://cgg52hwl0uwam" path="res://scene/player/skill_manager.gd" id="11_1wtbu"]
+[ext_resource type="Script" uid="uid://ba0shvnn65suv" path="res://scene/player/skill/attack/attack.gd" id="12_p3aiu"]
 [ext_resource type="Script" uid="uid://c22d8nrmd24f5" path="res://scene/player/input_indicator/input_indicator.gd" id="13_p3aiu"]
+[ext_resource type="Script" uid="uid://cusb5kayka8i" path="res://scene/player/skill/shoot/shoot.gd" id="14_f5r2w"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6smn3"]
+radius = 20.0
+height = 120.0
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_6smn3"]
 viewport_path = NodePath("Sprite2D/SubViewport")
 
 [sub_resource type="Environment" id="Environment_5lop3"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6smn3"]
-radius = 20.0
-height = 120.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1wtbu"]
+size = Vector2(83, 77)
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_v7pse")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_6smn3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -45,58 +53,67 @@ fov = 40.0
 size = 1.7
 near = 0.001
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_6smn3")
-
-[node name="PlayerAnimation" type="Node" parent="." node_paths=PackedStringArray("player", "movement", "nullb0")]
+[node name="PlayerAnimation" type="Node" parent="." node_paths=PackedStringArray("player", "nullb0")]
 unique_name_in_owner = true
 script = ExtResource("4_5lop3")
 player = NodePath("..")
-movement = NodePath("../PlayerMovement")
 nullb0 = NodePath("../Sprite2D/SubViewport/Nullb0")
-
-[node name="PlayerAttack" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("5_ajqqa")
 
 [node name="PlayerInput" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("8_hfhxk")
 
-[node name="PlayerMovement" type="Node" parent="." node_paths=PackedStringArray("player")]
+[node name="StateMachine" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("3_6smn3")
-player = NodePath("..")
+script = ExtResource("5_p3aiu")
 initial_state = &"Idle"
+metadata/_custom_type_script = "uid://cg54jbgpcdhyh"
 
-[node name="Idle" type="Node" parent="PlayerMovement" node_paths=PackedStringArray("player")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("4_732fb")
 player = NodePath("../..")
 metadata/_custom_type_script = "uid://crweyl2gxjye8"
 
-[node name="Run" type="Node" parent="PlayerMovement" node_paths=PackedStringArray("player")]
+[node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("5_pisg7")
 player = NodePath("../..")
 metadata/_custom_type_script = "uid://crweyl2gxjye8"
 
-[node name="Jump" type="Node" parent="PlayerMovement" node_paths=PackedStringArray("player")]
+[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("6_oypl4")
 player = NodePath("../..")
 metadata/_custom_type_script = "uid://crweyl2gxjye8"
 
-[node name="Fall" type="Node" parent="PlayerMovement" node_paths=PackedStringArray("player")]
+[node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("7_qjg4s")
 player = NodePath("../..")
 metadata/_custom_type_script = "uid://crweyl2gxjye8"
 
-[node name="Climb" type="Node" parent="PlayerMovement"]
+[node name="Climb" type="Node" parent="StateMachine"]
 script = ExtResource("5_hfhxk")
-metadata/_custom_type_script = "uid://crweyl2gxjye8"
-
-[node name="NormalAttack" type="Node" parent="PlayerMovement"]
-script = ExtResource("12_1wtbu")
 metadata/_custom_type_script = "uid://crweyl2gxjye8"
 
 [node name="InputIndicator" type="Node2D" parent="."]
 position = Vector2(-35, -50)
 script = ExtResource("13_p3aiu")
+
+[node name="SkillManager" type="Node2D" parent="."]
+script = ExtResource("11_1wtbu")
+
+[node name="Attack" type="Node2D" parent="SkillManager" node_paths=PackedStringArray("player")]
+script = ExtResource("12_p3aiu")
+player = NodePath("../..")
+metadata/_custom_type_script = "uid://b2tv0v1k8gsmp"
+
+[node name="Hitbox" type="Area2D" parent="SkillManager/Attack"]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SkillManager/Attack/Hitbox"]
+position = Vector2(69.5, 0)
+shape = SubResource("RectangleShape2D_1wtbu")
+
+[node name="Shoot" type="Node2D" parent="SkillManager"]
+script = ExtResource("14_f5r2w")
+metadata/_custom_type_script = "uid://b2tv0v1k8gsmp"
+
+[connection signal="area_entered" from="SkillManager/Attack/Hitbox" to="SkillManager/Attack" method="_on_hitbox_area_entered"]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://rbwmc6g5gvhs"]
+
+[ext_resource type="Script" uid="uid://lde8aibxkby2" path="res://scene/player/skill/shoot/bullet.gd" id="1_glbey"]
+
+[node name="Bullet" type="Area2D"]
+script = ExtResource("1_glbey")
