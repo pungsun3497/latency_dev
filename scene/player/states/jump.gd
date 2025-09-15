@@ -18,7 +18,7 @@ func physics_process(delta: float):
 	player.velocity.y += player.GRAVITY * delta
 	player.move_and_slide()
 	player.facing = %PlayerInput.h_input
-	%PlayerAnimation.rotate_model(player.facing * PI / 4 if %PlayerInput.h_input != 0 else 0)
+	%PlayerAnimation.rotate_model(player.facing * PI / 4)
 	
 	if player.is_on_floor():
 		if %PlayerInput.h_input == 0.0: return request_transition("Idle")

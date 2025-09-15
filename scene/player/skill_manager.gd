@@ -13,6 +13,8 @@ func _ready():
 func _process(delta):
 	if DelayedInput.is_action_just_pressed("attack"):
 		excute_skill("Attack")
+	elif DelayedInput.is_action_just_pressed("dash"):
+		excute_skill("Dash")
 	
 	if current_skill: current_skill.process(delta)
 
@@ -24,6 +26,7 @@ func excute_skill(skill_name: StringName):
 	if current_skill:
 		return
 	current_skill = skills[skill_name]
-	await current_skill.excute()
+	current_skill.excute()
+	await current_skill.skill_ended
 	current_skill = null
 	

@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=37 format=3 uid="uid://0qwbankqymdt"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=39 format=3 uid="uid://0qwbankqymdt"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3ay5h"]
 animation = &"attack_01"
@@ -41,6 +41,11 @@ animation = &"land"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kru7c"]
 animation = &"RESET"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u7014"]
+animation = &"roll"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_0f7af"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2xdt5"]
 animation = &"climb_high_idle"
@@ -131,9 +136,9 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-489, -169)
 
 [resource]
-graph_offset = Vector2(1817.09, 124.804)
+graph_offset = Vector2(1134.67, -9.33333)
 nodes/AttackAnimation/node = SubResource("AnimationNodeAnimation_3ay5h")
-nodes/AttackAnimation/position = Vector2(2240, 373.333)
+nodes/AttackAnimation/position = Vector2(2346.67, 266.667)
 nodes/AttackOneShot/node = SubResource("AnimationNodeOneShot_u7014")
 nodes/AttackOneShot/position = Vector2(2586.67, 53.3333)
 nodes/FaceBlend2/node = SubResource("AnimationNodeBlend2_p63m3")
@@ -148,7 +153,11 @@ nodes/LandOneShot/node = SubResource("AnimationNodeOneShot_htomc")
 nodes/LandOneShot/position = Vector2(1440, 320)
 nodes/RESET/node = SubResource("AnimationNodeAnimation_kru7c")
 nodes/RESET/position = Vector2(1120, 293.333)
+nodes/RollAnimation/node = SubResource("AnimationNodeAnimation_u7014")
+nodes/RollAnimation/position = Vector2(2800, 213.333)
+nodes/RollOneShot/node = SubResource("AnimationNodeOneShot_0f7af")
+nodes/RollOneShot/position = Vector2(3040, 26.6667)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_3ay5h")
 nodes/StateMachine/position = Vector2(1173.33, 26.6667)
-nodes/output/position = Vector2(2986.67, 0)
-node_connections = [&"AttackOneShot", 0, &"FaceBlend2", &"AttackOneShot", 1, &"AttackAnimation", &"FaceBlend2", 0, &"LandAdd2", &"FaceBlend2", 1, &"FaceStateMachine", &"LandAdd2", 0, &"StateMachine", &"LandAdd2", 1, &"LandOneShot", &"LandOneShot", 0, &"RESET", &"LandOneShot", 1, &"LandAnimation", &"output", 0, &"AttackOneShot"]
+nodes/output/position = Vector2(3360, 26.6667)
+node_connections = [&"AttackOneShot", 0, &"FaceBlend2", &"AttackOneShot", 1, &"AttackAnimation", &"FaceBlend2", 0, &"LandAdd2", &"FaceBlend2", 1, &"FaceStateMachine", &"LandAdd2", 0, &"StateMachine", &"LandAdd2", 1, &"LandOneShot", &"LandOneShot", 0, &"RESET", &"LandOneShot", 1, &"LandAnimation", &"RollOneShot", 0, &"AttackOneShot", &"RollOneShot", 1, &"RollAnimation", &"output", 0, &"RollOneShot"]

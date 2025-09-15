@@ -4,7 +4,6 @@ extends State
 
 func enter():
 	player.velocity = Vector2.ZERO
-	%PlayerAnimation.rotate_model(0)
 
 func exit():
 	pass

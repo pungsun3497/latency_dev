@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://d3oichrttx71j"]
+
+[ext_resource type="Script" uid="uid://b076th4ip4r6v" path="res://scene/enemy/enemy.gd" id="1_ev14c"]
+[ext_resource type="Texture2D" uid="uid://dmdikh1usc8o0" path="res://icon.svg" id="2_0nuf7"]
+[ext_resource type="Script" uid="uid://cg54jbgpcdhyh" path="res://global/state_machine.gd" id="3_fahm0"]
+[ext_resource type="Script" uid="uid://c4v5knqp7t2j5" path="res://scene/enemy/crab_bot/patrol.gd" id="4_a413x"]
+[ext_resource type="Script" uid="uid://crweyl2gxjye8" path="res://global/state.gd" id="5_fu856"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6xnrp"]
+size = Vector2(62, 36)
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_ev14c")
+move_speed = 100.0
+metadata/_custom_type_script = "uid://b076th4ip4r6v"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.295)
+texture = ExtResource("2_0nuf7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6xnrp")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_fahm0")
+initial_state = &"Patrol"
+metadata/_custom_type_script = "uid://cg54jbgpcdhyh"
+
+[node name="Patrol" type="Node" parent="StateMachine"]
+script = ExtResource("4_a413x")
+metadata/_custom_type_script = "uid://crweyl2gxjye8"
+
+[node name="Follow" type="Node" parent="StateMachine"]
+script = ExtResource("5_fu856")
+metadata/_custom_type_script = "uid://crweyl2gxjye8"
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("5_fu856")
+metadata/_custom_type_script = "uid://crweyl2gxjye8"
+
+[node name="RayPivot" type="Node2D" parent="."]
+
+[node name="FrontRay" type="RayCast2D" parent="RayPivot"]
+unique_name_in_owner = true
+position = Vector2(0, 13)
+target_position = Vector2(50, 0)
+
+[node name="FrontFloorRay" type="RayCast2D" parent="RayPivot"]
+unique_name_in_owner = true
+position = Vector2(44, 0)
+target_position = Vector2(0, 30)

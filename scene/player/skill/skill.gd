@@ -1,10 +1,15 @@
 extends Node2D
 class_name Skill
 
+@export var duration: float = 0.3
+
 signal skill_ended
 
-func start():
-	pass
+func excute():
+	if not _can_excuted_with_state(%StateMachine.get_current_state_name()): return end()
+	await get_tree().create_timer(duration).timeout
+	end()
+	return
 
 func end():
 	skill_ended.emit()

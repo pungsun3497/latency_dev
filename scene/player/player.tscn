@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://esl4hggocind"]
+[gd_scene load_steps=28 format=3 uid="uid://esl4hggocind"]
 
 [ext_resource type="Script" uid="uid://by4tcwn7p0vvv" path="res://scene/player/player.gd" id="1_v7pse"]
 [ext_resource type="PackedScene" uid="uid://7ade0olxigbw" path="res://resource/model/player/nullb_0.tscn" id="2_cm2cf"]
@@ -14,6 +14,8 @@
 [ext_resource type="Script" uid="uid://ba0shvnn65suv" path="res://scene/player/skill/attack/attack.gd" id="12_p3aiu"]
 [ext_resource type="Script" uid="uid://c22d8nrmd24f5" path="res://scene/player/input_indicator/input_indicator.gd" id="13_p3aiu"]
 [ext_resource type="Script" uid="uid://cusb5kayka8i" path="res://scene/player/skill/shoot/shoot.gd" id="14_f5r2w"]
+[ext_resource type="Texture2D" uid="uid://kfk2hacc68od" path="res://resource/sprite/slash.png" id="14_oen5c"]
+[ext_resource type="Script" uid="uid://dkafoa4qip6o6" path="res://scene/player/skill/dash.gd" id="16_5g408"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6smn3"]
 radius = 20.0
@@ -25,7 +27,62 @@ viewport_path = NodePath("Sprite2D/SubViewport")
 [sub_resource type="Environment" id="Environment_5lop3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1wtbu"]
-size = Vector2(83, 77)
+size = Vector2(83, 126)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5g408"]
+atlas = ExtResource("14_oen5c")
+region = Rect2(0, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sc4n2"]
+atlas = ExtResource("14_oen5c")
+region = Rect2(512, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrcci"]
+atlas = ExtResource("14_oen5c")
+region = Rect2(1024, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fspl2"]
+atlas = ExtResource("14_oen5c")
+region = Rect2(1536, 0, 512, 512)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eeiom"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5g408")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sc4n2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrcci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fspl2")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"attack",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_5g408"]
+resource_name = "excute"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sc4n2"]
+_data = {
+&"excute": SubResource("Animation_5g408")
+}
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -41,7 +98,7 @@ texture = SubResource("ViewportTexture_6smn3")
 [node name="SubViewport" type="SubViewport" parent="Sprite2D"]
 transparent_bg = true
 msaa_3d = 2
-size = Vector2i(135, 135)
+size = Vector2i(256, 256)
 
 [node name="Nullb0" parent="Sprite2D/SubViewport" instance=ExtResource("2_cm2cf")]
 
@@ -50,7 +107,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.769913, 2.45028)
 environment = SubResource("Environment_5lop3")
 projection = 1
 fov = 40.0
-size = 1.7
+size = 3.245
 near = 0.001
 
 [node name="PlayerAnimation" type="Node" parent="." node_paths=PackedStringArray("player", "nullb0")]
@@ -98,6 +155,7 @@ position = Vector2(-35, -50)
 script = ExtResource("13_p3aiu")
 
 [node name="SkillManager" type="Node2D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("11_1wtbu")
 
 [node name="Attack" type="Node2D" parent="SkillManager" node_paths=PackedStringArray("player")]
@@ -107,13 +165,43 @@ metadata/_custom_type_script = "uid://b2tv0v1k8gsmp"
 
 [node name="Hitbox" type="Area2D" parent="SkillManager/Attack"]
 collision_mask = 8
+monitoring = false
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SkillManager/Attack/Hitbox"]
-position = Vector2(69.5, 0)
+position = Vector2(69.5, 1)
 shape = SubResource("RectangleShape2D_1wtbu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkillManager/Attack"]
+position = Vector2(68, -2)
+scale = Vector2(0.384766, 0.384766)
+sprite_frames = SubResource("SpriteFrames_eeiom")
+animation = &"attack"
+frame = 3
+frame_progress = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SkillManager/Attack"]
+root_node = NodePath("../../..")
+libraries = {
+&"": SubResource("AnimationLibrary_sc4n2")
+}
 
 [node name="Shoot" type="Node2D" parent="SkillManager"]
 script = ExtResource("14_f5r2w")
 metadata/_custom_type_script = "uid://b2tv0v1k8gsmp"
 
+[node name="Dash" type="Node2D" parent="SkillManager" node_paths=PackedStringArray("player")]
+script = ExtResource("16_5g408")
+player = NodePath("../..")
+duration = 0.2
+metadata/_custom_type_script = "uid://b2tv0v1k8gsmp"
+
+[node name="DebugLabel" type="Label" parent="."]
+offset_left = -116.0
+offset_top = -70.0
+offset_right = -39.0
+offset_bottom = -23.0
+
 [connection signal="area_entered" from="SkillManager/Attack/Hitbox" to="SkillManager/Attack" method="_on_hitbox_area_entered"]
+
+[editable path="Sprite2D/SubViewport/Nullb0"]

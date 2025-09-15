@@ -18,4 +18,7 @@ parameters/LandAdd2/add_amount = 1.0
 parameters/LandOneShot/active = false
 parameters/LandOneShot/internal_active = false
 parameters/LandOneShot/request = 0
+parameters/RollOneShot/active = false
+parameters/RollOneShot/internal_active = false
+parameters/RollOneShot/request = 0
 parameters/StateMachine/fall/blend_position = -0.000941634

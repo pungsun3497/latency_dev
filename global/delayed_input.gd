@@ -15,7 +15,7 @@ class TimedInputEvent:
 var delay: float = 0.5
 var input_stream: Array[TimedInputEvent]
 var action_status: Dictionary
-var current_time: float = 0.0
+var current_time: float = 0.
 
 
 func _init():

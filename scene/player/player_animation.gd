@@ -42,3 +42,5 @@ func play_skill(skill_name: StringName):
 	match skill_name:
 		"Attack":
 			anim_tree.set("parameters/AttackOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		"Dash":
+			anim_tree.set("parameters/RollOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)

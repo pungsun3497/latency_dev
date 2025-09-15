@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://3kkcp8vev7h7"]
+
+[ext_resource type="PackedScene" uid="uid://dmjmkm3qnp3nv" path="res://resource/model/effect/slash.glb" id="1_hiwbo"]
+[ext_resource type="Material" uid="uid://batw1eyd38mcm" path="res://resource/model/effect/slash_mat.tres" id="2_y2g4o"]
+
+[node name="slash" instance=ExtResource("1_hiwbo")]
+
+[node name="Plane" parent="." index="0"]
+material_override = ExtResource("2_y2g4o")
