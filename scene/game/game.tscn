@@ -1,13 +1,18 @@
-[gd_scene load_steps=5 format=4 uid="uid://bmjcl1sau216v"]
+[gd_scene load_steps=7 format=4 uid="uid://bmjcl1sau216v"]
 
+[ext_resource type="Script" uid="uid://86rhp3shblmq" path="res://scene/game/game.gd" id="1_0tn4t"]
 [ext_resource type="PackedScene" uid="uid://esl4hggocind" path="res://scene/player/player.tscn" id="1_8xedm"]
 [ext_resource type="TileSet" uid="uid://xxo31pgusqq6" path="res://resource/tileset/prototype/prototype_tileset.tres" id="1_pw1yp"]
+[ext_resource type="Script" uid="uid://b83ep1woqn1b3" path="res://scene/game/world.gd" id="1_tr56l"]
 [ext_resource type="PackedScene" uid="uid://eatwp7i7hbnq" path="res://scene/enemy/dummy/dummy.tscn" id="2_l2vx3"]
 [ext_resource type="PackedScene" uid="uid://d3oichrttx71j" path="res://scene/enemy/crab_bot/crab_bot.tscn" id="4_82mss"]
 
 [node name="Game" type="Node"]
+script = ExtResource("1_0tn4t")
 
-[node name="World" type="Node2D" parent="."]
+[node name="World" type="Node2D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("1_tr56l")
+player = NodePath("Player")
 
 [node name="Level" type="Node2D" parent="World"]
 

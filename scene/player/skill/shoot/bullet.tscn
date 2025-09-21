@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://rbwmc6g5gvhs"]
+[gd_scene load_steps=3 format=3 uid="uid://rbwmc6g5gvhs"]
 
 [ext_resource type="Script" uid="uid://lde8aibxkby2" path="res://scene/player/skill/shoot/bullet.gd" id="1_glbey"]
+[ext_resource type="Texture2D" uid="uid://dmdikh1usc8o0" path="res://icon.svg" id="2_0h24h"]
 
 [node name="Bullet" type="Area2D"]
 script = ExtResource("1_glbey")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_0h24h")

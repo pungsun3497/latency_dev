@@ -8,10 +8,16 @@ signal died
 @export var move_speed: float
 
 var health: int
+var facing: bool
 
 
 func _ready():
+	spawn()
+
+
+func spawn():
 	health = max_health
+	facing = true
 
 
 func take_damage(amount: int):

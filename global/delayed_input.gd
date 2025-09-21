@@ -27,7 +27,6 @@ func _init():
 
 func _unhandled_input(event):
 	input_stream.push_back(TimedInputEvent.new(current_time, event))
-	InputEventMouse
 
 
 func _process(delta):

@@ -15,6 +15,8 @@ func _process(delta):
 		excute_skill("Attack")
 	elif DelayedInput.is_action_just_pressed("dash"):
 		excute_skill("Dash")
+	elif DelayedInput.is_action_just_pressed("shoot"):
+		excute_skill("Shoot")
 	
 	if current_skill: current_skill.process(delta)
 

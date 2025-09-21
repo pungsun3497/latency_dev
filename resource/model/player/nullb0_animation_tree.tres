@@ -137,6 +137,7 @@ graph_offset = Vector2(-489, -169)
 
 [resource]
 graph_offset = Vector2(1134.67, -9.33333)
+nodes/output/position = Vector2(3360, 26.6667)
 nodes/AttackAnimation/node = SubResource("AnimationNodeAnimation_3ay5h")
 nodes/AttackAnimation/position = Vector2(2346.67, 266.667)
 nodes/AttackOneShot/node = SubResource("AnimationNodeOneShot_u7014")
@@ -159,5 +160,4 @@ nodes/RollOneShot/node = SubResource("AnimationNodeOneShot_0f7af")
 nodes/RollOneShot/position = Vector2(3040, 26.6667)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_3ay5h")
 nodes/StateMachine/position = Vector2(1173.33, 26.6667)
-nodes/output/position = Vector2(3360, 26.6667)
-node_connections = [&"AttackOneShot", 0, &"FaceBlend2", &"AttackOneShot", 1, &"AttackAnimation", &"FaceBlend2", 0, &"LandAdd2", &"FaceBlend2", 1, &"FaceStateMachine", &"LandAdd2", 0, &"StateMachine", &"LandAdd2", 1, &"LandOneShot", &"LandOneShot", 0, &"RESET", &"LandOneShot", 1, &"LandAnimation", &"RollOneShot", 0, &"AttackOneShot", &"RollOneShot", 1, &"RollAnimation", &"output", 0, &"RollOneShot"]
+node_connections = [&"output", 0, &"RollOneShot", &"AttackOneShot", 0, &"FaceBlend2", &"AttackOneShot", 1, &"AttackAnimation", &"FaceBlend2", 0, &"LandAdd2", &"FaceBlend2", 1, &"FaceStateMachine", &"LandAdd2", 0, &"StateMachine", &"LandAdd2", 1, &"LandOneShot", &"LandOneShot", 0, &"RESET", &"LandOneShot", 1, &"LandAnimation", &"RollOneShot", 0, &"AttackOneShot", &"RollOneShot", 1, &"RollAnimation"]

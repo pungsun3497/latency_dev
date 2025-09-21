@@ -17,7 +17,7 @@ func _ready() -> void:
 		if child is State:
 			states.set(child.name, child)
 	
-	if initial_state.is_empty(): push_error("Needed Initial State for State Machine")
+	if initial_state.is_empty(): push_error("Needed initial state for this state machine")
 	change_state(initial_state)
 
 

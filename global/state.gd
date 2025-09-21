@@ -1,17 +1,18 @@
+@abstract
 extends Node
 class_name State
 
-func enter():
-	pass
+@abstract
+func enter()
 
-func exit():
-	pass
+@abstract
+func exit()
 
-func process(delta: float):
-	pass
+@abstract
+func process(delta: float)
 
-func physics_process(delta: float):
-	pass
+@abstract
+func physics_process(delta: float)
 
 func request_transition(state: StringName):
 	if get_parent() is StateMachine:

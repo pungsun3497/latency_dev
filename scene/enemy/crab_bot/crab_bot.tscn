@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dmdikh1usc8o0" path="res://icon.svg" id="2_0nuf7"]
 [ext_resource type="Script" uid="uid://cg54jbgpcdhyh" path="res://global/state_machine.gd" id="3_fahm0"]
 [ext_resource type="Script" uid="uid://c4v5knqp7t2j5" path="res://scene/enemy/crab_bot/patrol.gd" id="4_a413x"]
-[ext_resource type="Script" uid="uid://crweyl2gxjye8" path="res://global/state.gd" id="5_fu856"]
+[ext_resource type="Script" uid="uid://7ewqfcpgq18s" path="res://scene/enemy/crab_bot/follow.gd" id="5_fahm0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6xnrp"]
 size = Vector2(62, 36)
@@ -27,19 +27,19 @@ script = ExtResource("3_fahm0")
 initial_state = &"Patrol"
 metadata/_custom_type_script = "uid://cg54jbgpcdhyh"
 
-[node name="Patrol" type="Node" parent="StateMachine"]
+[node name="Patrol" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("4_a413x")
+entity = NodePath("../..")
 metadata/_custom_type_script = "uid://crweyl2gxjye8"
 
-[node name="Follow" type="Node" parent="StateMachine"]
-script = ExtResource("5_fu856")
-metadata/_custom_type_script = "uid://crweyl2gxjye8"
+[node name="Follow" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
+script = ExtResource("5_fahm0")
+entity = NodePath("../..")
 
 [node name="Attack" type="Node" parent="StateMachine"]
-script = ExtResource("5_fu856")
-metadata/_custom_type_script = "uid://crweyl2gxjye8"
 
 [node name="RayPivot" type="Node2D" parent="."]
+unique_name_in_owner = true
 
 [node name="FrontRay" type="RayCast2D" parent="RayPivot"]
 unique_name_in_owner = true
@@ -50,3 +50,6 @@ target_position = Vector2(50, 0)
 unique_name_in_owner = true
 position = Vector2(44, 0)
 target_position = Vector2(0, 30)
+
+[node name="PlayerRay" type="RayCast2D" parent="."]
+unique_name_in_owner = true

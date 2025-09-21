@@ -1,10 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://esl4hggocind"]
+[gd_scene load_steps=27 format=3 uid="uid://esl4hggocind"]
 
 [ext_resource type="Script" uid="uid://by4tcwn7p0vvv" path="res://scene/player/player.gd" id="1_v7pse"]
 [ext_resource type="PackedScene" uid="uid://7ade0olxigbw" path="res://resource/model/player/nullb_0.tscn" id="2_cm2cf"]
 [ext_resource type="Script" uid="uid://cnct1wgtxc423" path="res://scene/player/player_animation.gd" id="4_5lop3"]
 [ext_resource type="Script" uid="uid://s6oy6rkbndj8" path="res://scene/player/states/idle.gd" id="4_732fb"]
-[ext_resource type="Script" uid="uid://crweyl2gxjye8" path="res://global/state.gd" id="5_hfhxk"]
 [ext_resource type="Script" uid="uid://cg54jbgpcdhyh" path="res://global/state_machine.gd" id="5_p3aiu"]
 [ext_resource type="Script" uid="uid://dlbwlg72sui31" path="res://scene/player/states/run.gd" id="5_pisg7"]
 [ext_resource type="Script" uid="uid://dmheio6ykbcv7" path="res://scene/player/states/jump.gd" id="6_oypl4"]
@@ -147,8 +146,6 @@ player = NodePath("../..")
 metadata/_custom_type_script = "uid://crweyl2gxjye8"
 
 [node name="Climb" type="Node" parent="StateMachine"]
-script = ExtResource("5_hfhxk")
-metadata/_custom_type_script = "uid://crweyl2gxjye8"
 
 [node name="InputIndicator" type="Node2D" parent="."]
 position = Vector2(-35, -50)
@@ -186,8 +183,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_sc4n2")
 }
 
-[node name="Shoot" type="Node2D" parent="SkillManager"]
+[node name="Shoot" type="Node2D" parent="SkillManager" node_paths=PackedStringArray("player")]
 script = ExtResource("14_f5r2w")
+player = NodePath("../..")
+duration = 0.1
 metadata/_custom_type_script = "uid://b2tv0v1k8gsmp"
 
 [node name="Dash" type="Node2D" parent="SkillManager" node_paths=PackedStringArray("player")]
